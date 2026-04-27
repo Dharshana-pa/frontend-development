@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Explore</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            <div class="container">
+    <h2 class="text-center mt-4">📖 Explore Verses</h2>
+
+    <div id="verseList"></div>
+</div>
+
+<script>
+let verses = JSON.parse(localStorage.getItem("verses")) || [];
+
+let container = document.getElementById("verseList");
+
+verses.forEach(v => {
+    let div = document.createElement("div");
+    div.className = "card p-3";
+    div.innerText = v;
+    container.appendChild(div);
+});
+</script>
+            background: #f5e6cc;
+            font-family: serif;
+        }
+
+        .card {
+            margin-top: 20px;
+            background: #fff8e7;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2 class="text-center mt-4">📖 Explore Verses</h2>
+
+    <div class="card p-3">
+        "She left, but her silence stayed..."
+    </div>
+
+    <div class="card p-3">
+        "We wrote forever in temporary ink."
+    </div>
+
+</div>
+
+</body>
+</html>

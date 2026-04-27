@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Collaborate</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5e6cc;
+            font-family: serif;
+        }
+
+        .chat-box {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #fff8e7;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .message {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 10px;
+            max-width: 70%;
+        }
+
+        .left {
+            background: #e6d3b3;
+        }
+
+        .right {
+            background: #8b5e3c;
+            color: white;
+            margin-left: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-box">
+
+    <h4>🤝 Live Collaboration</h4>
+
+    <div id="chatArea"></div>
+
+    <textarea id="chatInput" class="form-control mt-3" placeholder="Continue the verse..."></textarea>
+
+    <button class="btn btn-dark mt-2" onclick="sendMessage()">Add Line</button>
+
+</div>
+
+<script>
+function sendMessage() {
+    let text = document.getElementById("chatInput").value;
+
+    if(text.trim() === "") {
+        alert("Write something!");
+        return;
+    }
+
+    let chat = JSON.parse(localStorage.getItem("chat")) || [];
+
+    chat.push(text);
+    localStorage.setItem("chat", JSON.stringify(chat));
+
+    document.getElementById("chatInput").value = "";
+
+    showChat();
+}
+
+function showChat() {
+    let chat = JSON.parse(localStorage.getItem("chat")) || [];
+    let area = document.getElementById("chatArea");
+
+    area.innerHTML = "";
+
+    chat.forEach((msg, index) => {
+        let div = document.createElement("div");
+        div.className = "message " + (index % 2 === 0 ? "left" : "right");
+        div.innerText = msg;
+        area.appendChild(div);
+    });
+}
+
+showChat();
+</script>
+
+</body>
+</html>
